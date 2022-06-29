@@ -4,4 +4,8 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\InstagramClone.Domain\InstagramClone.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

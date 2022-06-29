@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\InstagramClone.Application\InstagramClone.Application.csproj" />
     <ProjectReference Include="..\..\Core\InstagramClone.Domain\InstagramClone.Domain.csproj" />
   </ItemGroup>
 
