@@ -37,23 +37,23 @@ namespace InstagramClone.Persistence.Contexts
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 
-        public override int SaveChanges()
-        {
-            OnBeforeSave();
-            return base.SaveChanges();
-        }
+        //public override int SaveChanges()
+        //{
+        //    OnBeforeSave();
+        //    return base.SaveChanges();
+        //}
 
-        public override int SaveChanges(bool acceptAllChangesOnSuccess)
-        {
-            OnBeforeSave();
-            return base.SaveChanges(acceptAllChangesOnSuccess);
-        }
+        //public override int SaveChanges(bool acceptAllChangesOnSuccess)
+        //{
+        //    OnBeforeSave();
+        //    return base.SaveChanges(acceptAllChangesOnSuccess);
+        //}
 
-        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
-        {
-            OnBeforeSave();
-            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
-        }
+        //public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+        //{
+        //    OnBeforeSave();
+        //    return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        //}
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
