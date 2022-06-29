@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,6 +31,11 @@ namespace InstagramClone.Persistence.Contexts
         public DbSet<File> Files { get; set; }
         public DbSet<PostImageFile> PostImageFiles { get; set; }
         public DbSet<ProfileImageFile> ProfileImageFiles { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        }
 
         public override int SaveChanges()
         {
