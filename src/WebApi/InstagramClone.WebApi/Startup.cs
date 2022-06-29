@@ -1,3 +1,4 @@
+using InstagramClone.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +29,9 @@ namespace InstagramClone.WebApi
         {
 
             services.AddControllers();
+
+            services.AddPersistenceServices(Configuration);
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "InstagramClone.WebApi", Version = "v1" });

@@ -8,7 +8,7 @@ namespace InstagramClone.Domain.Entities
 {
     public class Reply : BaseEntity
     {
-        public Post PostId { get; set; }
+        public Guid PostId { get; set; }
         public Post Post { get; set; }
 
         public string Message { get; set; }
