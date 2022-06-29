@@ -8,8 +8,8 @@ namespace InstagramClone.Domain.Entities
 {
     public abstract class BaseEntity
     {
-        public Guid Id { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime UpdatedDate { get; set; }
+        public virtual Guid Id { get; set; }
+        public virtual DateTime CreatedDate { get; set; }
+        public virtual DateTime UpdatedDate { get; set; }
     }
 }
