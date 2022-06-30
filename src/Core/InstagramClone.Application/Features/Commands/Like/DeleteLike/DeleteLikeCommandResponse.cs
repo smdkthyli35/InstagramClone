@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InstagramClone.Application.Features.Commands.Like.CreateLike
+namespace InstagramClone.Application.Features.Commands.Like.DeleteLike
 {
-    public class CreateLikeCommandResponse
+    public class DeleteLikeCommandResponse
     {
         public string LikeId { get; set; }
     }

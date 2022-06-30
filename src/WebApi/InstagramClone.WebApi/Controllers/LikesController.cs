@@ -1,4 +1,5 @@
 ﻿using InstagramClone.Application.Features.Commands.Like.CreateLike;
+using InstagramClone.Application.Features.Commands.Like.DeleteLike;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,6 +25,13 @@ namespace InstagramClone.WebApi.Controllers
         public async Task<IActionResult> CreateLike(CreateLikeCommandRequest createLikeCommandRequest)
         {
             CreateLikeCommandResponse response = await _mediator.Send(createLikeCommandRequest);
+            return Ok(response);
+        }
+
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> DeleteLike([FromRoute] DeleteLikeCommandRequest deleteLikeCommandRequest)
+        {
+            DeleteLikeCommandResponse response = await _mediator.Send(deleteLikeCommandRequest);
             return Ok(response);
         }
     }

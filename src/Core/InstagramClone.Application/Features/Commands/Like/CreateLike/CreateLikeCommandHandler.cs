@@ -28,7 +28,7 @@ namespace InstagramClone.Application.Features.Commands.Like.CreateLike
             await _likeRepository.SaveAsync();
             return new()
             {
-                PostId = mappedLike.PostId.ToString()
+                LikeId = mappedLike.Id.ToString()
             };
         }
     }
