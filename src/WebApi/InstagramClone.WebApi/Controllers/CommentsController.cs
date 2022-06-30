@@ -1,4 +1,5 @@
 ﻿using InstagramClone.Application.Features.Commands.Comment.CreateComment;
+using InstagramClone.Application.Features.Commands.Comment.DeleteComment;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +26,13 @@ namespace InstagramClone.WebApi.Controllers
         {
             CreateCommentCommandResponse response = await _mediator.Send(createCommentCommandRequest);
             return Ok(response);
+        }
+
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> DeleteComment([FromRoute] DeleteCommentCommandRequest deleteCommentCommandRequest)
+        {
+            DeleteCommentCommandResponse response = await _mediator.Send(deleteCommentCommandRequest);
+            return Ok();
         }
     }
 }
