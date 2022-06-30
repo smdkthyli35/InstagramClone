@@ -1,7 +1,8 @@
 ﻿using InstagramClone.Application.Features.Commands.Post.CreatePost;
 using InstagramClone.Application.Features.Commands.Post.DeletePost;
 using InstagramClone.Application.Features.Commands.Post.UpdatePost;
-using InstagramClone.Application.Features.Queries.GetByIdPost;
+using InstagramClone.Application.Features.Queries.Post.GetAllProduct;
+using InstagramClone.Application.Features.Queries.Post.GetByIdPost;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +22,13 @@ namespace InstagramClone.WebApi.Controllers
         public PostsController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll([FromQuery] int page, int pageSize)
+        {
+            var posts = await _mediator.Send(new GetAllPostQueryRequest(page, pageSize));
+            return Ok(posts);
         }
 
         [HttpGet("{Id}")]

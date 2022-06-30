@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace InstagramClone.Application.Features.Queries.GetByIdPost
+namespace InstagramClone.Application.Features.Queries.Post.GetByIdPost
 {
     public class GetByIdPostQueryHandler : IRequestHandler<GetByIdPostQueryRequest, GetByIdPostQueryResponse>
     {
