@@ -1,5 +1,6 @@
 ﻿using InstagramClone.Application.Features.Commands.Comment.CreateComment;
 using InstagramClone.Application.Features.Commands.Comment.DeleteComment;
+using InstagramClone.Application.Features.Commands.Comment.UpdateComment;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -33,6 +34,13 @@ namespace InstagramClone.WebApi.Controllers
         {
             DeleteCommentCommandResponse response = await _mediator.Send(deleteCommentCommandRequest);
             return Ok();
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateComment([FromBody] UpdateCommentCommandRequest updateCommentCommandRequest)
+        {
+            UpdateCommentCommandResponse response = await _mediator.Send(updateCommentCommandRequest);
+            return Ok(response);
         }
     }
 }
