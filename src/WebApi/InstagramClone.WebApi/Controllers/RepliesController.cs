@@ -1,5 +1,6 @@
 ﻿using InstagramClone.Application.Features.Commands.Reply.CreateReply;
 using InstagramClone.Application.Features.Commands.Reply.DeleteReply;
+using InstagramClone.Application.Features.Commands.Reply.UpdateReply;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -33,6 +34,13 @@ namespace InstagramClone.WebApi.Controllers
         {
             DeleteReplyCommandResponse response = await _mediator.Send(deleteReplyCommandRequest);
             return Ok();
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateReply([FromBody] UpdateReplyCommandRequest updateReplyCommandRequest)
+        {
+            UpdateReplyCommandResponse response = await _mediator.Send(updateReplyCommandRequest);
+            return Ok(response);
         }
     }
 }
