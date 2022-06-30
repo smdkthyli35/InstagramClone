@@ -8,6 +8,5 @@ namespace InstagramClone.Application.Features.Commands.Post.CreatePost
 {
     public class CreatePostCommandResponse
     {
-        public Guid Id { get; set; }
     }
 }
