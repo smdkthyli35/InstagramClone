@@ -1,6 +1,8 @@
 ﻿using InstagramClone.Application.Features.Commands.Comment.CreateComment;
 using InstagramClone.Application.Features.Commands.Comment.DeleteComment;
 using InstagramClone.Application.Features.Commands.Comment.UpdateComment;
+using InstagramClone.Application.Features.Queries.Comment.GetAllComment;
+using InstagramClone.Application.Features.Queries.Comment.GetByIdComment;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +22,20 @@ namespace InstagramClone.WebApi.Controllers
         public CommentsController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll([FromQuery] int page, int pageSize)
+        {
+            var comments = await _mediator.Send(new GetAllCommentQueryRequest(page, pageSize));
+            return Ok(comments);
+        }
+
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetById([FromRoute] GetByIdCommentQueryRequest getByIdCommentQueryRequest)
+        {
+            GetByIdCommentQueryResponse response = await _mediator.Send(getByIdCommentQueryRequest);
+            return Ok(response);
         }
 
         [HttpPost]
