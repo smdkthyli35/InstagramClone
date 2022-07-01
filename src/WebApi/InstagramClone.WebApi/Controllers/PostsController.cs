@@ -5,6 +5,7 @@ using InstagramClone.Application.Features.Commands.PostImageFile.RemovePostImage
 using InstagramClone.Application.Features.Commands.PostImageFile.UploadPostImage;
 using InstagramClone.Application.Features.Queries.Post.GetAllProduct;
 using InstagramClone.Application.Features.Queries.Post.GetByIdPost;
+using InstagramClone.Application.Features.Queries.PostImageFile.GetPostImages;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -78,5 +79,11 @@ namespace InstagramClone.WebApi.Controllers
             return Ok();
         }
 
+        [HttpGet("[action]/{Id}")]
+        public async Task<IActionResult> GetPostImages([FromRoute] GetPostImagesQueryRequest getPostImagesQueryRequest)
+        {
+            List<GetPostImagesQueryResponse> responses = await _mediator.Send(getPostImagesQueryRequest);
+            return Ok(responses);
+        }
     }
 }
