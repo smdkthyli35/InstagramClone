@@ -13,14 +13,14 @@ namespace InstagramClone.Application.Features.Commands.PostImageFile.UploadPostI
     public class UploadPostImageCommandHandler : IRequestHandler<UploadPostImageCommandRequest, UploadPostImageCommandResponse>
     {
         private readonly IStorageService _storageService;
-        private readonly IPostImageFileRepository _postImageFileRepository;
         private readonly IPostRepository _postRepository;
+        private readonly IPostImageFileRepository _postImageFileRepository;
 
-        public UploadPostImageCommandHandler(IStorageService storageService, IPostImageFileRepository postImageFileRepository, IPostRepository postRepository)
+        public UploadPostImageCommandHandler(IStorageService storageService, IPostRepository postRepository, IPostImageFileRepository postImageFileRepository)
         {
             _storageService = storageService;
-            _postImageFileRepository = postImageFileRepository;
             _postRepository = postRepository;
+            _postImageFileRepository = postImageFileRepository;
         }
 
         public async Task<UploadPostImageCommandResponse> Handle(UploadPostImageCommandRequest request, CancellationToken cancellationToken)

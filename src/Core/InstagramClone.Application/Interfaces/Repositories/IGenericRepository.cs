@@ -1,4 +1,5 @@
 ﻿using InstagramClone.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,5 +22,6 @@ namespace InstagramClone.Application.Interfaces.Repositories
         Task<bool> RemoveAsync(string id);
         bool Update(TEntity model);
         Task<int> SaveAsync();
+        DbSet<TEntity> Table { get; }
     }
 }

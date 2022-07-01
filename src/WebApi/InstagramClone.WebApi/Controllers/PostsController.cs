@@ -1,6 +1,7 @@
 ﻿using InstagramClone.Application.Features.Commands.Post.CreatePost;
 using InstagramClone.Application.Features.Commands.Post.DeletePost;
 using InstagramClone.Application.Features.Commands.Post.UpdatePost;
+using InstagramClone.Application.Features.Commands.PostImageFile.RemovePostImage;
 using InstagramClone.Application.Features.Commands.PostImageFile.UploadPostImage;
 using InstagramClone.Application.Features.Queries.Post.GetAllProduct;
 using InstagramClone.Application.Features.Queries.Post.GetByIdPost;
@@ -62,11 +63,19 @@ namespace InstagramClone.WebApi.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> Upload([FromQuery] UploadPostImageCommandRequest uploadPostImageCommandRequest)
+        public async Task<IActionResult> UploadProductImage([FromQuery] UploadPostImageCommandRequest uploadPostImageCommandRequest)
         {
             uploadPostImageCommandRequest.Files = Request.Form.Files;
             UploadPostImageCommandResponse response = await _mediator.Send(uploadPostImageCommandRequest);
-            return Ok(response);
+            return Ok();
+        }
+
+        [HttpDelete("[action]/{Id}")]
+        public async Task<IActionResult> DeleteProductImage([FromRoute] RemovePostImageCommandRequest removePostImageCommandRequest, [FromQuery] string imageId)
+        {
+            removePostImageCommandRequest.ImageId = imageId;
+            RemovePostImageCommandResponse response = await _mediator.Send(removePostImageCommandRequest);
+            return Ok();
         }
 
     }
