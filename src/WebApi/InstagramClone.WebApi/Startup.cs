@@ -1,4 +1,6 @@
 using InstagramClone.Application;
+using InstagramClone.Infrastructure;
+using InstagramClone.Infrastructure.Services.Storage.Azure;
 using InstagramClone.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,6 +34,9 @@ namespace InstagramClone.WebApi
 
             services.AddPersistenceServices(Configuration);
             services.AddApplicationServices();
+            services.AddInfrastructureServices();
+
+            services.AddStorage<AzureStorage>();
 
             services.AddSwaggerGen(c =>
             {
