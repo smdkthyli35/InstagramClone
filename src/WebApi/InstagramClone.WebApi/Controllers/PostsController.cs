@@ -1,6 +1,7 @@
 ﻿using InstagramClone.Application.Features.Commands.Post.CreatePost;
 using InstagramClone.Application.Features.Commands.Post.DeletePost;
 using InstagramClone.Application.Features.Commands.Post.UpdatePost;
+using InstagramClone.Application.Features.Commands.PostImageFile.UploadPostImage;
 using InstagramClone.Application.Features.Queries.Post.GetAllProduct;
 using InstagramClone.Application.Features.Queries.Post.GetByIdPost;
 using MediatR;
@@ -59,5 +60,14 @@ namespace InstagramClone.WebApi.Controllers
             UpdatePostCommandResponse response = await _mediator.Send(updatePostCommandRequest);
             return Ok(response);
         }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> Upload([FromQuery] UploadPostImageCommandRequest uploadPostImageCommandRequest)
+        {
+            uploadPostImageCommandRequest.Files = Request.Form.Files;
+            UploadPostImageCommandResponse response = await _mediator.Send(uploadPostImageCommandRequest);
+            return Ok(response);
+        }
+
     }
 }
