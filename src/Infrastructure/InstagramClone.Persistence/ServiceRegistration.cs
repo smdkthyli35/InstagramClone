@@ -1,4 +1,5 @@
 ﻿using InstagramClone.Application.Interfaces.Repositories;
+using InstagramClone.Domain.Entities.Identity;
 using InstagramClone.Persistence.Contexts;
 using InstagramClone.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,7 @@ namespace InstagramClone.Persistence
         public static void AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<InstagramCloneDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<InstagramCloneDbContext>();
 
             services.AddScoped<ICommentRepository, CommentRepository>();
             services.AddScoped<IFileRepository, FileRepository>();

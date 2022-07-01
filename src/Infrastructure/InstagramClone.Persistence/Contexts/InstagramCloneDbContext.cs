@@ -1,4 +1,6 @@
 ﻿using InstagramClone.Domain.Entities;
+using InstagramClone.Domain.Entities.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,13 +12,9 @@ using System.Threading.Tasks;
 
 namespace InstagramClone.Persistence.Contexts
 {
-    public class InstagramCloneDbContext : DbContext
+    public class InstagramCloneDbContext : IdentityDbContext<AppUser, AppRole, string>
     {
         public const string DEFAULT_SCHEMA = "dbo";
-
-        public InstagramCloneDbContext()
-        {
-        }
 
         public InstagramCloneDbContext(DbContextOptions options) : base(options)
         {
@@ -34,6 +32,8 @@ namespace InstagramClone.Persistence.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 
