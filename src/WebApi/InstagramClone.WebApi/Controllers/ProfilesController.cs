@@ -1,5 +1,6 @@
 ﻿using InstagramClone.Application.Features.Commands.ProfileImageFile.RemoveProfileImage;
 using InstagramClone.Application.Features.Commands.ProfileImageFile.UploadProfileImage;
+using InstagramClone.Application.Features.Queries.ProfileImageFile.GetProfileImages;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -35,6 +36,13 @@ namespace InstagramClone.WebApi.Controllers
             removeProfileImageCommandRequest.ImageId = imageId;
             RemoveProfileImageCommandResponse response = await _mediator.Send(removeProfileImageCommandRequest);
             return Ok();
+        }
+
+        [HttpGet("[action]/{Id}")]
+        public async Task<IActionResult> GetProfileImages([FromRoute] GetProfileImagesQueryRequest getProfileImagesQueryRequest)
+        {
+            List<GetProfileImagesQueryResponse> responses = await _mediator.Send(getProfileImagesQueryRequest);
+            return Ok(responses);
         }
     }
 }
