@@ -18,7 +18,14 @@ namespace InstagramClone.Persistence
         public static void AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<InstagramCloneDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<InstagramCloneDbContext>();
+            services.AddIdentity<AppUser, AppRole>(options =>
+            {
+                options.Password.RequiredLength = 3;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireDigit = false;
+            }).AddEntityFrameworkStores<InstagramCloneDbContext>();
 
             services.AddScoped<ICommentRepository, CommentRepository>();
             services.AddScoped<IFileRepository, FileRepository>();
