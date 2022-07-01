@@ -1,5 +1,6 @@
 ﻿using InstagramClone.Application.Features.Commands.AppUser.CreateUser;
 using InstagramClone.Application.Features.Commands.AppUser.LoginUser;
+using InstagramClone.Application.Features.Queries.User.GetAllUser;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -32,6 +33,13 @@ namespace InstagramClone.WebApi.Controllers
         public async Task<IActionResult> Login(LoginUserCommandRequest loginUserCommandRequest)
         {
             LoginUserCommandResponse response = await _mediator.Send(loginUserCommandRequest);
+            return Ok(response);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllUsers([FromQuery] GetAllUserQueryRequest getAllUserQueryRequest)
+        {
+            GetAllUserQueryResponse response = await _mediator.Send(getAllUserQueryRequest);
             return Ok(response);
         }
     }
