@@ -36,6 +36,7 @@ namespace InstagramClone.Persistence
             services.AddScoped<IProfileImageFileRepository, ProfileImageFileRepository>();
             services.AddScoped<IProfileRepository, ProfileRepository>();
             services.AddScoped<IReplyRepository, ReplyRepository>();
+            services.AddScoped<IEmailConfirmationRepository, EmailConfirmationRepository>();
         }
     }
 }

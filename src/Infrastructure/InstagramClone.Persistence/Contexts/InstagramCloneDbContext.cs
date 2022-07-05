@@ -29,6 +29,7 @@ namespace InstagramClone.Persistence.Contexts
         public DbSet<File> Files { get; set; }
         public DbSet<PostImageFile> PostImageFiles { get; set; }
         public DbSet<ProfileImageFile> ProfileImageFiles { get; set; }
+        public DbSet<EmailConfirmation> EmailConfirmations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
