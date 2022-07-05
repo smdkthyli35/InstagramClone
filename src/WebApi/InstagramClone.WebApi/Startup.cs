@@ -1,5 +1,6 @@
 using InstagramClone.Application;
 using InstagramClone.Infrastructure;
+using InstagramClone.Infrastructure.Extensions;
 using InstagramClone.Infrastructure.Services.Storage.Azure;
 using InstagramClone.Persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -74,6 +75,8 @@ namespace InstagramClone.WebApi
             }
 
             app.UseHttpsRedirection();
+
+            app.ConfigureExceptionHandling(env.IsDevelopment());
 
             app.UseRouting();
 
