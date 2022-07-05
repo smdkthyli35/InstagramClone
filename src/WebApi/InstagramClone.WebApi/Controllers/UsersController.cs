@@ -1,5 +1,6 @@
 ﻿using InstagramClone.Application.Features.Commands.AppUser.CreateUser;
 using InstagramClone.Application.Features.Commands.AppUser.LoginUser;
+using InstagramClone.Application.Features.Commands.AppUser.UpdateUser;
 using InstagramClone.Application.Features.Queries.User.GetAllUser;
 using InstagramClone.Application.Features.Queries.User.GetByIdUser;
 using MediatR;
@@ -14,7 +15,7 @@ using System.Threading.Tasks;
 namespace InstagramClone.WebApi.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize(AuthenticationSchemes = "Admin")]
+    //[Authorize(AuthenticationSchemes = "Admin")]
     [ApiController]
     public class UsersController : ControllerBase
     {
@@ -43,6 +44,13 @@ namespace InstagramClone.WebApi.Controllers
         public async Task<IActionResult> CreateUser(CreateUserCommandRequest createUserCommandRequest)
         {
             CreateUserCommandResponse response = await _mediator.Send(createUserCommandRequest);
+            return Ok(response);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateUser([FromBody] UpdateUserCommandRequest updateUserCommandRequest)
+        {
+            UpdateUserCommandResponse response = await _mediator.Send(updateUserCommandRequest);
             return Ok(response);
         }
 

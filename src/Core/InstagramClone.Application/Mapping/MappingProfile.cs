@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using InstagramClone.Application.Features.Commands.AppUser.UpdateUser;
 using InstagramClone.Application.Features.Commands.Comment.CreateComment;
 using InstagramClone.Application.Features.Commands.Comment.UpdateComment;
 using InstagramClone.Application.Features.Commands.Like.CreateLike;
@@ -41,6 +42,9 @@ namespace InstagramClone.Application.Mapping
 
             CreateMap<Reply, UpdateReplyCommandRequest>()
                 .ForMember(dest => dest.UpdatedDate, opt => opt.MapFrom(x => DateTime.Now))
+                .ReverseMap();
+
+            CreateMap<Domain.Entities.Identity.AppUser, UpdateUserCommandRequest>()
                 .ReverseMap();
 
             CreateMap<Comment, CreateCommentCommandRequest>()
