@@ -3,6 +3,7 @@ using InstagramClone.Application.Features.Commands.AppUser.LoginUser;
 using InstagramClone.Application.Features.Queries.User.GetAllUser;
 using InstagramClone.Application.Features.Queries.User.GetByIdUser;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 namespace InstagramClone.WebApi.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize(AuthenticationSchemes = "Admin")]
     [ApiController]
     public class UsersController : ControllerBase
     {

@@ -7,6 +7,7 @@ using InstagramClone.Application.Features.Queries.Post.GetAllProduct;
 using InstagramClone.Application.Features.Queries.Post.GetByIdPost;
 using InstagramClone.Application.Features.Queries.PostImageFile.GetPostImages;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -17,6 +18,7 @@ using System.Threading.Tasks;
 namespace InstagramClone.WebApi.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize(AuthenticationSchemes = "Admin")]
     [ApiController]
     public class PostsController : ControllerBase
     {

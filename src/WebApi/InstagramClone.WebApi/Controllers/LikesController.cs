@@ -1,6 +1,7 @@
 ﻿using InstagramClone.Application.Features.Commands.Like.CreateLike;
 using InstagramClone.Application.Features.Commands.Like.DeleteLike;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 namespace InstagramClone.WebApi.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize(AuthenticationSchemes = "Admin")]
     [ApiController]
     public class LikesController : ControllerBase
     {

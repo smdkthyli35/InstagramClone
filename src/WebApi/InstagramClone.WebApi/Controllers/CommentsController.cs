@@ -4,6 +4,7 @@ using InstagramClone.Application.Features.Commands.Comment.UpdateComment;
 using InstagramClone.Application.Features.Queries.Comment.GetAllComment;
 using InstagramClone.Application.Features.Queries.Comment.GetByIdComment;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,6 +15,7 @@ using System.Threading.Tasks;
 namespace InstagramClone.WebApi.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize(AuthenticationSchemes ="Admin")]
     [ApiController]
     public class CommentsController : ControllerBase
     {

@@ -2,6 +2,7 @@
 using InstagramClone.Application.Features.Commands.Reply.DeleteReply;
 using InstagramClone.Application.Features.Commands.Reply.UpdateReply;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 namespace InstagramClone.WebApi.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize(AuthenticationSchemes = "Admin")]
     [ApiController]
     public class RepliesController : ControllerBase
     {
