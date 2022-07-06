@@ -1,4 +1,5 @@
 using InstagramClone.Application;
+using InstagramClone.Application.Pipelines.Caching;
 using InstagramClone.Infrastructure;
 using InstagramClone.Infrastructure.Extensions;
 using InstagramClone.Infrastructure.Services.Storage.Azure;
@@ -41,6 +42,10 @@ namespace InstagramClone.WebApi
             services.AddInfrastructureServices();
 
             services.AddStorage<AzureStorage>();
+
+            services.AddStackExchangeRedisCache(options => options.Configuration = "localhost:6379");
+
+            services.Configure<CacheSettings>(Configuration.GetSection("CacheSettings"));
 
             services.AddSwaggerGen(c =>
             {
