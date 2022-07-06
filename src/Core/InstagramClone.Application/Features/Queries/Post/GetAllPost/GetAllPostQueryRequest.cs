@@ -18,7 +18,7 @@ namespace InstagramClone.Application.Features.Queries.Post.GetAllProduct
 
         public bool BypassCache { get; set; }
 
-        public string CacheKey => "post-list";
+        public string CacheKey => "posts-list";
 
         public TimeSpan? SlidingExpiration { get; set; }
     }
