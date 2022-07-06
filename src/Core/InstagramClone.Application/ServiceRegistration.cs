@@ -1,4 +1,6 @@
-﻿using InstagramClone.Application.Pipelines.Caching;
+﻿using FluentValidation;
+using InstagramClone.Application.Pipelines.Caching;
+using InstagramClone.Application.Pipelines.Validation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -17,7 +19,9 @@ namespace InstagramClone.Application
             var assembly = Assembly.GetExecutingAssembly();
             services.AddMediatR(assembly);
             services.AddAutoMapper(assembly);
+            services.AddValidatorsFromAssembly(assembly);
 
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
         }
     }
