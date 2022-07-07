@@ -1,4 +1,5 @@
 ﻿using InstagramClone.Application.Features.Commands.AppUser.CreateUser;
+using InstagramClone.Application.Features.Commands.AppUser.GoogleLogin;
 using InstagramClone.Application.Features.Commands.AppUser.LoginUser;
 using InstagramClone.Application.Features.Commands.AppUser.UpdateUser;
 using InstagramClone.Application.Features.Queries.User.GetAllUser;
@@ -58,6 +59,13 @@ namespace InstagramClone.WebApi.Controllers
         public async Task<IActionResult> Login(LoginUserCommandRequest loginUserCommandRequest)
         {
             LoginUserCommandResponse response = await _mediator.Send(loginUserCommandRequest);
+            return Ok(response);
+        }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> GoogleLogin([FromBody] GoogleLoginCommandRequest googleLoginCommandRequest)
+        {
+            GoogleLoginCommandResponse response = await _mediator.Send(googleLoginCommandRequest);
             return Ok(response);
         }
     }
