@@ -54,19 +54,5 @@ namespace InstagramClone.WebApi.Controllers
             UpdateUserCommandResponse response = await _mediator.Send(updateUserCommandRequest);
             return Ok(response);
         }
-
-        [HttpPost("[action]")]
-        public async Task<IActionResult> Login(LoginUserCommandRequest loginUserCommandRequest)
-        {
-            LoginUserCommandResponse response = await _mediator.Send(loginUserCommandRequest);
-            return Ok(response);
-        }
-
-        [HttpPost("[action]")]
-        public async Task<IActionResult> GoogleLogin([FromBody] GoogleLoginCommandRequest googleLoginCommandRequest)
-        {
-            GoogleLoginCommandResponse response = await _mediator.Send(googleLoginCommandRequest);
-            return Ok(response);
-        }
     }
 }
