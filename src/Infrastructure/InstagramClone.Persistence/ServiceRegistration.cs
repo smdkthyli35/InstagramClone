@@ -1,7 +1,9 @@
-﻿using InstagramClone.Application.Interfaces.Repositories;
+﻿using InstagramClone.Application.Abstractions.Services;
+using InstagramClone.Application.Interfaces.Repositories;
 using InstagramClone.Domain.Entities.Identity;
 using InstagramClone.Persistence.Contexts;
 using InstagramClone.Persistence.Repositories;
+using InstagramClone.Persistence.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,6 +39,8 @@ namespace InstagramClone.Persistence
             services.AddScoped<IProfileRepository, ProfileRepository>();
             services.AddScoped<IReplyRepository, ReplyRepository>();
             services.AddScoped<IEmailConfirmationRepository, EmailConfirmationRepository>();
+
+            services.AddScoped<IUserService, UserService>();
         }
     }
 }

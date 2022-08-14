@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using InstagramClone.Application.Abstractions.Services;
+using MediatR;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -11,36 +12,29 @@ namespace InstagramClone.Application.Features.Commands.AppUser.CreateUser
 {
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommandRequest, CreateUserCommandResponse>
     {
-        private readonly UserManager<Domain.Entities.Identity.AppUser> _userManager;
+        private readonly IUserService _userService;
 
-        public CreateUserCommandHandler(UserManager<Domain.Entities.Identity.AppUser> userManager)
+        public CreateUserCommandHandler(IUserService userService)
         {
-            _userManager = userManager;
+            _userService = userService;
         }
 
         public async Task<CreateUserCommandResponse> Handle(CreateUserCommandRequest request, CancellationToken cancellationToken)
         {
-            IdentityResult identityResult = await _userManager.CreateAsync(new()
+            Dtos.User.CreateUserResponse response = await _userService.CreateAsync(new()
             {
-                Id = Guid.NewGuid().ToString(),
                 Email = request.Email,
                 NameSurname = request.NameSurname,
-                UserName = request.Username
-            }, request.Password);
+                Username = request.Username,
+                Password = request.Password,
+                PasswordConfirm = request.PasswordConfirm
+            });
 
-            CreateUserCommandResponse response = new() { Succeeded = identityResult.Succeeded };
-
-            if (identityResult.Succeeded)
-                response.Message = "Kullanıcı başarıyla oluşturuldu.";
-            else
+            return new()
             {
-                foreach (var error in identityResult.Errors)
-                {
-                    response.Message += $"{error.Code} - {error.Description}\n";
-                }
-            }
-
-            return response;
+                Message = response.Message,
+                Succeeded = response.Succeeded
+            };
         }
     }
 }
