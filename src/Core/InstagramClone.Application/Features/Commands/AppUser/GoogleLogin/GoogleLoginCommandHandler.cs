@@ -1,13 +1,6 @@
-﻿using Google.Apis.Auth;
-using InstagramClone.Application.Abstractions.Services;
+﻿using InstagramClone.Application.Abstractions.Services;
 using InstagramClone.Application.Dtos;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 

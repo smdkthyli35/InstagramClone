@@ -3,6 +3,7 @@ using Google.Apis.Http;
 using InstagramClone.Application.Abstractions.Services;
 using InstagramClone.Application.Abstractions.Token;
 using InstagramClone.Application.Dtos;
+using InstagramClone.Application.Exceptions;
 using InstagramClone.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -83,9 +84,23 @@ namespace InstagramClone.Persistence.Services
             return await CreateUserExternalAsync(user, payload.Email, payload.Name, info, accessTokenLifeTime);
         }
 
-        public Task LoginAsync()
+        public async Task<Token> LoginAsync(string usernameOrEmail, string password, int accessTokenLifeTime)
         {
-            throw new NotImplementedException();
+            AppUser user = await _userManager.FindByNameAsync(usernameOrEmail);
+            if (user is null)
+                user = await _userManager.FindByEmailAsync(usernameOrEmail);
+
+            if (user is null)
+                throw new NotFoundUserException();
+
+            SignInResult result = await _signInManager.CheckPasswordSignInAsync(user, password, false);
+            if (result.Succeeded)
+            {
+                Token token = _tokenHandler.CreateAccessToken(5);
+                return token;
+            }
+
+            throw new AuthenticationErrorException();
         }
     }
 }
