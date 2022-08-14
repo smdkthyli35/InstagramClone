@@ -1,4 +1,5 @@
 ﻿using InstagramClone.Application.Abstractions.Services;
+using InstagramClone.Application.Abstractions.Services.Authentications;
 using InstagramClone.Application.Interfaces.Repositories;
 using InstagramClone.Domain.Entities.Identity;
 using InstagramClone.Persistence.Contexts;
@@ -41,6 +42,9 @@ namespace InstagramClone.Persistence
             services.AddScoped<IEmailConfirmationRepository, EmailConfirmationRepository>();
 
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IExternalAuthentication, AuthService>();
+            services.AddScoped<IInternalAuthentication, AuthService>();
         }
     }
 }
